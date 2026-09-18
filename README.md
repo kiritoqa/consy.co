@@ -26,3 +26,7 @@ Keep the `CNAME` file in this repo as `consy.co`.
 ```bash
 npx --yes serve . -p 4321
 ```
+
+## Search indexing
+
+Stub is `noindex` + `robots.txt` (`Disallow: /`) until the full site launches. Remove both on go-live, then re-index in Google Search Console.
