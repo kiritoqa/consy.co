@@ -1,32 +1,26 @@
 # consy.co
 
-Public brand landing (GitHub Pages). Product app lives in the private [consy](https://github.com/kiritoqa/consy) monorepo.
+Iryna Nechytailo's Consy landing page. A static site (HTML, CSS, vanilla JS), published by GitHub Pages.
 
 ## GitHub Pages
 
 1. **Settings → Pages → Build and deployment**: **Deploy from a branch**
 2. Branch **main**, folder **/ (root)**
-3. **Custom domain**: `consy.co` → Save → **Enforce HTTPS** when available
+3. **Custom domain**: `consy.co`, then **Enforce HTTPS**
 
-## GoDaddy DNS
+Keep the `CNAME` file as `consy.co` and the empty `.nojekyll` file.
 
-Remove **A @ → WebsiteBuilder Site**. Add four **A** records for `@`:
+## Files
 
-- `185.199.108.153`
-- `185.199.109.153`
-- `185.199.110.153`
-- `185.199.111.153`
+- `index.html`, `styles.css`, `main.js`: the page
+- `i18n.js`: Russian and Ukrainian copy, picked by the visitor's browser language (test with `?lang=ru`, `?lang=uk`, `?lang=en`)
+- `works/`: the drifting gallery of work (`compositions.js` lists the tiles)
+- `assets/`: images, video, logo, icons
 
-**CNAME** `www` → `kiritoqa.github.io`
-
-Keep the `CNAME` file in this repo as `consy.co`.
+Contacts (email, WhatsApp, Telegram, Instagram) are set in `CONTACTS` at the top of `main.js`.
 
 ## Local preview
 
 ```bash
-npx --yes serve . -p 4321
+python3 -m http.server 4321
 ```
-
-## Search indexing
-
-Stub is `noindex` + `robots.txt` (`Disallow: /`) until the full site launches. Remove both on go-live, then re-index in Google Search Console.
