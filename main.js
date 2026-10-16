@@ -540,8 +540,11 @@
       const n = Math.round(clamp(area / 95, 5200, 13000));
       const items = [];
       let guard = 0;
+      // tall (portrait) screens look further down, so the field starts closer to the camera
+      // there; otherwise the bottom of a phone screen falls on bare, dark ground
+      const nearStart = 0.9 - 0.8 * smoothstep(1.0, 0.6, aspect);
       while (items.length < n && guard++ < n * 6) {
-        const z = -(0.9 + Math.pow(rand(), 2.2) * 34);
+        const z = -(nearStart + Math.pow(rand(), 2.2) * 34);
         const halfW = Math.abs(z) * tanH * 1.1 + 1.0;
         const px = pathX(z);
         const x = px + (rand() * 2 - 1) * halfW;

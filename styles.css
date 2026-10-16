@@ -312,6 +312,14 @@ button { font: inherit; color: inherit; }
 }
 .hero__title em { font-style: italic; }
 
+/* Tall phone screens: the headline sits higher, over the quiet night sky, so it never fights
+   the brightest flowers; the vignette moves down so it no longer darkens the bottom of the meadow. */
+@media (max-aspect-ratio: 4/5) {
+  .hero { place-items: start center; }
+  .hero__inner { padding-block: calc(var(--header-h) + 17svh) 0; }
+  .meadow-shade { background: radial-gradient(ellipse 140% 100% at 50% 72%, transparent 55%, rgba(14, 14, 17, .65) 100%); }
+}
+
 /* ---------- 1b. About ---------- */
 
 .about {
