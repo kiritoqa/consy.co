@@ -768,11 +768,12 @@
       const walk = dollyIn + smoothstep(0, 1.5, scroll) * 6.5; // scrolling walks you into the meadow
       const ez = 0.6 - walk;
       const ex = pathX(ez) * 0.6 + cam.x * 0.22 + Math.sin(t * 0.07) * 0.18 * drift;
-      // on tall (portrait) screens look further down, so the meadow fills more of the screen
+      // on tall (portrait) screens look a little down, so the meadow sits low under the headline
+      const PORTRAIT_TILT = 0.75;
       const portrait = smoothstep(1.1, 0.6, cssW / cssH);
       const ey = 0.95 + portrait * 0.25 - cam.y * 0.08 + Math.sin(t * 0.11) * 0.04 * drift - smoothstep(0, 1.2, scroll) * 0.2;
       const tz = ez - 10;
-      const f = camera(cssW / cssH, ex, ey, ez, pathX(tz) * 0.5 + cam.x * 0.4, 0.78 - portrait * 1.13 - cam.y * 0.15, tz);
+      const f = camera(cssW / cssH, ex, ey, ez, pathX(tz) * 0.5 + cam.x * 0.4, 0.78 - portrait * PORTRAIT_TILT - cam.y * 0.15, tz);
       const scale = (H / 2) * f;
       // the meadow dims halfway under the description, then goes fully dark before the gallery
       const dim = 1 - 0.5 * smoothstep(0.05, 1.0, scroll) - 0.5 * smoothstep(1.15, 1.6, scroll);

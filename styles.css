@@ -312,13 +312,6 @@ button { font: inherit; color: inherit; }
 }
 .hero__title em { font-style: italic; }
 
-/* Tall phone screens: the headline sits higher, over the quiet night sky, so it never fights
-   the brightest flowers; the vignette moves down so it no longer darkens the bottom of the meadow. */
-@media (max-aspect-ratio: 4/5) {
-  .hero { place-items: start center; }
-  .hero__inner { padding-block: calc(var(--header-h) + 17svh) 0; }
-  .meadow-shade { background: radial-gradient(ellipse 140% 100% at 50% 72%, transparent 55%, rgba(14, 14, 17, .65) 100%); }
-}
 
 /* ---------- 1b. About ---------- */
 
@@ -631,7 +624,6 @@ button { font: inherit; color: inherit; }
   background: #fff;
   transition: border-color .3s ease;
 }
-.pkg:hover { border-color: var(--rain); }
 
 .pkg__name { font-size: clamp(1.75rem, 1.45rem + 1vw, 2.375rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.1; }
 .pkg__for { margin-top: 10px; color: var(--ink); font-size: 16px; line-height: 1.5; }
@@ -659,17 +651,8 @@ button { font: inherit; color: inherit; }
 
 /* Each package has its own colour from the palette and a small mark that shows its size:
    one page, several pages, a whole system. */
-.pkg { position: relative; overflow: hidden; transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out), border-color .3s ease; }
-/* beats the reveal rule (.js [data-reveal].is-visible), which otherwise pins transform and its slow transition */
-@media (hover: hover) {
-  .js .pkg.is-visible:hover,
-  .pkg:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 24px 48px -28px rgba(44, 44, 49, .35);
-    transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out), border-color .3s ease;
-    transition-delay: 0s;
-  }
-}
+.pkg { position: relative; overflow: hidden; }
+
 .pkg__top { padding-right: 76px; }
 .pkg__art {
   position: absolute;
@@ -693,9 +676,6 @@ button { font: inherit; color: inherit; }
   border-color: var(--ink);
   color: var(--paper);
 }
-.pkg--launch:hover,
-.pkg--website:hover { border-color: var(--ink); }
-.pkg--product:hover { border-color: var(--rain); }
 
 .pkg--launch .pkg__meta,
 .pkg--website .pkg__meta { border-top-color: rgba(44, 44, 49, .2); }
@@ -710,7 +690,6 @@ button { font: inherit; color: inherit; }
 .pkg--website .pkg__cta:hover { --btn-bg: var(--paper); --btn-fg: var(--ink); --btn-border: var(--paper); }
 .pkg--product .pkg__cta { --btn-bg: var(--paper); --btn-fg: var(--ink); --btn-border: var(--paper); }
 .pkg--product .pkg__cta:hover { --btn-bg: var(--rain); --btn-border: var(--rain); }
-@media (prefers-reduced-motion: reduce) { .js .pkg.is-visible:hover, .pkg:hover { transform: none; } }
 
 /* Website card: what is different from Launch, highlighted */
 .pkg__body { flex: 1; display: grid; align-content: start; gap: 14px; }
@@ -866,6 +845,18 @@ button { font: inherit; color: inherit; }
   .addon__head { grid-column: 1 / 5; }
   .addon__list { grid-column: 5 / 10; }
   .addon__prices { grid-column: 10 / 13; flex-direction: column; align-items: flex-start; }
+}
+
+/* Tall phone screens: the vignette moves down so it no longer darkens the bottom of the meadow,
+   and the second screen follows the hero closely (no full screen of empty meadow in between),
+   with a darker veil so its text reads over the flowers. */
+@media (max-aspect-ratio: 4/5) {
+  .meadow-shade { background: radial-gradient(ellipse 140% 100% at 50% 72%, transparent 55%, rgba(14, 14, 17, .65) 100%); }
+  .about {
+    min-height: 0;
+    padding: 10svh 0 16svh;
+    background: linear-gradient(180deg, rgba(14, 14, 17, 0) 0, rgba(14, 14, 17, .62) 9svh, rgba(14, 14, 17, .74) 60%, var(--night) 100%);
+  }
 }
 
 /* ---------- 2. Work: drifting columns of equal tiles ---------- */
