@@ -998,8 +998,9 @@ button { font: inherit; color: inherit; }
 }
 .ask__btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
 .ask__btn:hover { border-color: var(--rain); background: var(--rain); }
+/* four short buttons: one row on wide screens, a 2 × 2 grid on phones */
 @media (max-width: 639.98px) {
-  .ask__links li { flex: 1 1 100%; }
+  .ask__links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 .faq__a { max-width: 62ch; padding: 0 24px 22px; color: var(--ink-muted); font-size: 15.5px; line-height: 1.6; }
@@ -1081,13 +1082,18 @@ button { font: inherit; color: inherit; }
 .site-footer__copy { justify-self: end; font-family: var(--font-mono); font-size: 12.5px; color: var(--paper-muted); }
 .site-footer a:focus-visible { outline: 2px solid var(--rain); outline-offset: 3px; border-radius: 2px; }
 
+/* Phones: everything on one left edge — line, button, logo, links, copyright */
 @media (max-width: 799.98px) {
-  .site-footer__bar { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 20px; }
-  .site-footer__copy { justify-self: center; }
+  .site-footer__cta { align-items: flex-start; text-align: left; padding-bottom: clamp(56px, 14vw, 88px); }
+  .site-footer__line { max-width: none; }
+  .site-footer__bar { grid-template-columns: 1fr; justify-items: start; text-align: left; gap: 24px; }
+  .site-footer__links { justify-content: flex-start; }
+  .site-footer__copy { justify-self: start; }
 }
 @media (max-width: 639.98px) {
   .site-footer__cta .btn { align-self: stretch; }
   .site-footer__links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; width: 100%; }
+  .site-footer__links a { min-height: 40px; }
 }
 
 /* ---------- Reduced motion ---------- */
